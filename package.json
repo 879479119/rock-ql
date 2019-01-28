@@ -63,7 +63,7 @@
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js",
-    "jison:build": "cd packages/rock-parser/jison && jison test.jison",
+    "jison:build": "cd packages/rock-parser/jison && jison pql.jison -o ../pql.js",
     "jison:build:example": "jison packages/rock-parser/jison/example.jison"
   },
   "eslintConfig": {
