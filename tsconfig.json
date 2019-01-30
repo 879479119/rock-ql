@@ -21,5 +21,9 @@
   },
   "include": [
     "src"
+  ],
+  "exclude": [
+    "src/packages/rock-generator",
+    "src/packages/rock-parser"
   ]
 }

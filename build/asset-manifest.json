@@ -1,0 +1,15 @@
+{
+  "main.css": "/rock-ql/build/static/css/main.chunk.css",
+  "main.js": "/rock-ql/build/static/js/main.chunk.js",
+  "main.js.map": "/rock-ql/build/static/js/main.chunk.js.map",
+  "static/css/1.chunk.css": "/rock-ql/build/static/css/1.chunk.css",
+  "static/js/1.chunk.js": "/rock-ql/build/static/js/1.chunk.js",
+  "static/js/1.chunk.js.map": "/rock-ql/build/static/js/1.chunk.js.map",
+  "runtime~main.js": "/rock-ql/build/static/js/runtime~main.js",
+  "runtime~main.js.map": "/rock-ql/build/static/js/runtime~main.js.map",
+  "static/css/1.chunk.css.map": "/rock-ql/build/static/css/1.chunk.css.map",
+  "static/css/main.chunk.css.map": "/rock-ql/build/static/css/main.chunk.css.map",
+  "index.html": "/rock-ql/build/index.html",
+  "precache-manifest.0e0dfead128efdfe779ee3ae62ec1b74.js": "/rock-ql/build/precache-manifest.0e0dfead128efdfe779ee3ae62ec1b74.js",
+  "service-worker.js": "/rock-ql/build/service-worker.js"
+}

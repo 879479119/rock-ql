@@ -1,0 +1,28 @@
+.Guideline {
+  height: 100%;
+  /* margin-left: 5px; */
+  position: absolute;
+  top: 0;
+  left: 28px;
+  z-index: -1;
+  border-left: 1px solid lightgray;
+}
+
+.Splitline {
+  width: 20px;
+  /* position: absolute; */
+  /* top: 15px; */
+  display: inline-block;
+  margin-left: 19px;
+  margin-right: 10px;
+  height: 6px;
+  border-top: 1px solid lightgray;
+}
+
+.group-tool {
+  margin: 10px;
+}
+
+.rule-tool {
+  margin: 10px;
+}
