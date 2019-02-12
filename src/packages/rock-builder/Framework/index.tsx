@@ -1,4 +1,5 @@
 import React, { ReactNode, createContext } from "react";
+import cloneDeep from 'lodash/cloneDeep'
 import { DragDropContext, DragDropContextProvider } from "react-dnd";
 import HTML5Backend from "react-dnd-html5-backend";
 import Entry from "./Entry";
@@ -20,6 +21,9 @@ interface State {
   moveNode: any;
   addNode: any;
   collopaseNode: any;
+  changeNodeType: any;
+  removeNode: any;
+  copyeNode: any;
 }
 
 export const FilterContext = createContext({
@@ -27,7 +31,6 @@ export const FilterContext = createContext({
   moveNode: (from: any, to: any) => {}
 });
 
-// @DragDropContext(HTML5Backend)
 export default class Framework extends React.Component<Props, State> {
   constructor(props: Props) {
     super(props);
@@ -35,7 +38,10 @@ export default class Framework extends React.Component<Props, State> {
       tree: assignParentNode(props.filters),
       moveNode: this.moveNode,
       addNode: this.addNode,
-      collopaseNode: this.collopaseNode
+      collopaseNode: this.collopaseNode,
+      removeNode: this.removeNode,
+      copyeNode: this.copyeNode,
+      changeNodeType: this.changeNodeType
     };
   }
   moveNode = (from: any, to: any) => {
@@ -56,16 +62,36 @@ export default class Framework extends React.Component<Props, State> {
   };
   collopaseNode = (node: any, filter: string = "FILTER_OR") => {
     const group = new Group(filter, node.parent);
+    const index = node.parent.list.findIndex((t: any) => t === node);
     if (node.type === "FILTER_NODE") {
-      group.list = node.list;
-      node.list = [group];
-    } else {
-      node.parent.list[node.index] = group;
-      node.index = 0;
+      node.parent.list[index] = group;
       group.list = [node];
-      console.info(this.state);
-      this.forceUpdate();
+      node.parent = group;
+    } else {
+      node.parent.list[index] = group;
+      group.list = [node];
+      node.parent = group;
     }
+    this.forceUpdate();
+  };
+  changeNodeType = (node: any, type: string) => {
+    node.type = type;
+    this.forceUpdate();
+  };
+  removeNode = (node: any) => {
+    const index = node.parent.list.findIndex((t: any) => t === node);
+    node.parent.list.splice(index, 1);
+    this.forceUpdate();
+  };
+  copyeNode = (node: any) => {
+    const index = node.parent.list.findIndex((t: any) => t === node);
+    console.info(node)
+    node.parent.list.splice(index, 0, {
+      type: 'FILTER_NODE',
+      action: node.action,
+      range: node.range,
+      parent: node.parent,
+    });
     this.forceUpdate();
   };
 
@@ -77,11 +103,9 @@ export default class Framework extends React.Component<Props, State> {
 
     return (
       <div>
-        <DragDropContextProvider backend={HTML5Backend}>
         <FilterContext.Provider value={this.state}>
           <Entry node={conditions} />
         </FilterContext.Provider>
-        </DragDropContextProvider>
       </div>
     );
   }

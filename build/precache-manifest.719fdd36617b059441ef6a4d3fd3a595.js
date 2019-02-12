@@ -4,7 +4,7 @@ self.__precacheManifest = [
     "url": "/rock-ql/build/static/js/runtime~main.js"
   },
   {
-    "revision": "cc8c42b75d6eeae1b878",
+    "revision": "61e62d5154c59b367c35",
     "url": "/rock-ql/build/static/js/main.chunk.js"
   },
   {
@@ -12,7 +12,7 @@ self.__precacheManifest = [
     "url": "/rock-ql/build/static/js/1.chunk.js"
   },
   {
-    "revision": "cc8c42b75d6eeae1b878",
+    "revision": "61e62d5154c59b367c35",
     "url": "/rock-ql/build/static/css/main.chunk.css"
   },
   {

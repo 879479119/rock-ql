@@ -16,8 +16,8 @@ export default class RuleTools extends React.Component<Props, object> {
         {(context: any) => {
           return (
             <ButtonGroup>
-              <Button icon="copy" />
-              <Button icon="delete" type="danger" />
+              <Button icon="copy" onClick={() => context.copyeNode(this.props.node)}  />
+              <Button icon="delete" type="danger" onClick={() => context.removeNode(this.props.node)} />
               <Button
                 onClick={() => {
                   context.collopaseNode(this.props.node);

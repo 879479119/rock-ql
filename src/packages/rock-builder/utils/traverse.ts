@@ -18,7 +18,6 @@ export const assignParentNode = (root: any) => {
   function walk(walker: any) {
     if (walker.list) {
       for (let i = 0; i < walker.list.length; i++) {
-        walker.list[i].index = i;
         walker.list[i].parent = walker;
         walk(walker.list[i]);
       }
@@ -26,7 +25,6 @@ export const assignParentNode = (root: any) => {
   }
 
   if (node.list) {
-    node.index = 0;
     node.parent = root;
   }
 
