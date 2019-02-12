@@ -6,15 +6,18 @@ import GuideLine from "../Tools/GuideLine";
 import SplitLine from "../Tools/SplitLine";
 
 interface Props {
-  list: {
+  node: {
     type: string
-    list: object[]
-  }[]
+    list: {
+      type: string
+      list: object[]
+    }[]
+  }
 }
 
 export default class OrGroup extends React.Component<Props, object> {
   render() : ReactNode {
-    const { list } = this.props;
+    const { node: {list} } = this.props;
     if (!list || !list.length) {
       return null
     }

@@ -19,3 +19,6 @@ SELECT COUNT
      OR ( TOPIC DO ID 7 TO ID 8 AND TOPIC DO ID 7 TO ID 8 )
     )
 ```
+
+#### 设计
++ 由于进行可视化构建时，很容易出现操作失误，需要有能回滚的功能

@@ -1,0 +1,6 @@
+
+export const TYPES = {
+  FILTER_AND: 'FILTER_AND',
+  FILTER_OR: 'FILTER_OR',
+  FILTER: 'FILTER',
+}
