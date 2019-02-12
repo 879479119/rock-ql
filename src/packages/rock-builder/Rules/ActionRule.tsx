@@ -18,10 +18,10 @@ export default class ActionRule extends React.Component<Props, object> {
     if (range) {
       return (
         <div className="rule-tool">
-          <SplitLine/>
+          <SplitLine />
           <Entry node={action} />
           <Entry node={range} />
-          <RuleTools />
+          <RuleTools node={this.props.node} />
         </div>
       )
     }
@@ -30,7 +30,7 @@ export default class ActionRule extends React.Component<Props, object> {
       <div className="rule-tool">
         <SplitLine/>
         <Entry node={action} />
-        <RuleTools />
+        <RuleTools node={this.props.node} />
       </div>
     )
   }

@@ -17,15 +17,21 @@ interface Props {
 
 export default class OrGroup extends React.Component<Props, object> {
   render() : ReactNode {
-    const { node: {list} } = this.props;
-    if (!list || !list.length) {
+    const { node, node: {list} } = this.props;
+    if (!list) {
       return null
+    }
+
+    console.info('render')
+
+    if (list.length === 0) {
+      console.info(33333333)
     }
 
     return (
       <div style={{ marginLeft: 40 }} className="group" >
         {/*<SplitLine/>*/}
-        <GroupTools type="FILTER_OR" />
+        <GroupTools type="FILTER_OR" node={node} />
         <div>
           <GuideLine/>
           {

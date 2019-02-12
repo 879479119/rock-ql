@@ -25,11 +25,12 @@ interface Props {
 class AndGroup extends React.Component<Props, object> {
   render(): ReactNode {
     const {
+      node,
       node: { list },
       connectDragSource,
       connectDropTarget
     } = this.props;
-    if (!list || !list.length) {
+    if (!list) {
       return null;
     }
 
@@ -37,7 +38,7 @@ class AndGroup extends React.Component<Props, object> {
       connectDragSource(
         <div style={{ marginLeft: 40 }} className="group">
           <Fragment>
-            <GroupTools type="FILTER_AND" />
+            <GroupTools type="FILTER_AND" node={node} />
             <div>
               <GuideLine />
               {list.map((item, index) => {

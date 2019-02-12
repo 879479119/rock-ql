@@ -18,8 +18,7 @@ interface Props {
 
 export default class TopicActionRule extends React.Component<Props, object> {
   render() : ReactNode {
-    const { node } = this.props;
-    const { action, target } = node.detail;
+    const { action, target } = this.props.node.detail || { action: { id: 0 }, target: { id: 0 } };
 
     return (
       <span>
