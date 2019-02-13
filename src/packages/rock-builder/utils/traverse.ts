@@ -32,3 +32,26 @@ export const assignParentNode = (root: any) => {
 
   return root;
 };
+
+
+
+export const clearParentNode = (root: any) => {
+  let node = root.conditions;
+
+  function walk(walker: any) {
+    if (walker.list) {
+      for (let i = 0; i < walker.list.length; i++) {
+        delete walker.list[i].parent;
+        walk(walker.list[i]);
+      }
+    }
+  }
+
+  if (node.list) {
+    delete node.parent;
+  }
+
+  walk(node);
+
+  return root;
+};

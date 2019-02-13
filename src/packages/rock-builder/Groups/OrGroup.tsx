@@ -22,12 +22,6 @@ export default class OrGroup extends React.Component<Props, object> {
       return null
     }
 
-    console.info('render')
-
-    if (list.length === 0) {
-      console.info(33333333)
-    }
-
     return (
       <div style={{ marginLeft: 40 }} className="group" >
         {/*<SplitLine/>*/}

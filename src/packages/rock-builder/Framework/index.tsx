@@ -20,10 +20,10 @@ interface State {
   tree: any;
   moveNode: any;
   addNode: any;
-  collopaseNode: any;
+  collapseNode: any;
   changeNodeType: any;
   removeNode: any;
-  copyeNode: any;
+  copyNode: any;
 }
 
 export const FilterContext = createContext({
@@ -38,14 +38,13 @@ export default class Framework extends React.Component<Props, State> {
       tree: assignParentNode(props.filters),
       moveNode: this.moveNode,
       addNode: this.addNode,
-      collopaseNode: this.collopaseNode,
+      collapseNode: this.collapseNode,
       removeNode: this.removeNode,
-      copyeNode: this.copyeNode,
+      copyNode: this.copyNode,
       changeNodeType: this.changeNodeType
     };
   }
   moveNode = (from: any, to: any) => {
-    console.info(from, to);
   };
   addNode = (node: string, to: any) => {
     if (node === "rule") {
@@ -53,14 +52,13 @@ export default class Framework extends React.Component<Props, State> {
       this.forceUpdate();
     } else if (node === "group") {
       to.list.push(new Group("FILTER_OR", to));
-      console.info(this.state)
       this.forceUpdate();
     } else {
       throw TypeError("Unexpected node type, cannot be inserted");
     }
     this.forceUpdate();
   };
-  collopaseNode = (node: any, filter: string = "FILTER_OR") => {
+  collapseNode = (node: any, filter: string = "FILTER_OR") => {
     const group = new Group(filter, node.parent);
     const index = node.parent.list.findIndex((t: any) => t === node);
     if (node.type === "FILTER_NODE") {
@@ -83,9 +81,8 @@ export default class Framework extends React.Component<Props, State> {
     node.parent.list.splice(index, 1);
     this.forceUpdate();
   };
-  copyeNode = (node: any) => {
+  copyNode = (node: any) => {
     const index = node.parent.list.findIndex((t: any) => t === node);
-    console.info(node)
     node.parent.list.splice(index, 0, {
       type: 'FILTER_NODE',
       action: node.action,

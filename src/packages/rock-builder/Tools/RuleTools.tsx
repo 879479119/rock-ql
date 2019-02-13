@@ -16,11 +16,11 @@ export default class RuleTools extends React.Component<Props, object> {
         {(context: any) => {
           return (
             <ButtonGroup>
-              <Button icon="copy" onClick={() => context.copyeNode(this.props.node)}  />
+              <Button icon="copy" onClick={() => context.copyNode(this.props.node)}  />
               <Button icon="delete" type="danger" onClick={() => context.removeNode(this.props.node)} />
               <Button
                 onClick={() => {
-                  context.collopaseNode(this.props.node);
+                  context.collapseNode(this.props.node);
                 }}
               >
                 <span style={{ margin: "0 -6px" }}>拆</span>

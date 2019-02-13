@@ -70,7 +70,7 @@ export default class GroupTools extends React.Component<Props, object> {
                 </Button>
                 <Button
                   onClick={() => {
-                    context.collopaseNode(this.props.node);
+                    context.collapseNode(this.props.node);
                   }}
                 >
                   拆分
