@@ -3,6 +3,7 @@ import { Select, Input } from 'antd'
 import RuleTools from "../Tools/RuleTools";
 
 interface Props {
+  errors: any;
   node: {
     type: string
     detail: {
@@ -18,16 +19,17 @@ interface Props {
 
 export default class TopicActionRule extends React.Component<Props, object> {
   render() : ReactNode {
-    const { action, target } = this.props.node.detail || { action: { id: 0 }, target: { id: 0 } };
+    const { errors, node } = this.props;
+    const { action, target } = this.props.node.detail;
 
     return (
-      <span>
+      <span className={errors && errors.has(node) ? 'has-error' : ''} >
         对话题&nbsp;&nbsp;
-        <Select value={target.id} />
+        <Select value={target.id} placeholder="请选择" style={{ width: 100 }}  />
         &nbsp;&nbsp;
         做了
         &nbsp;&nbsp;
-        <Select value={action.id} />
+        <Select value={action.id} placeholder="请选择" style={{ width: 100 }}  />
         &nbsp;&nbsp;
       </span>
     )

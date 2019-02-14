@@ -24,11 +24,11 @@ export default class UserActionRule extends React.Component<Props, object> {
     return (
       <span>
         对用户&nbsp;&nbsp;
-        <Select value={target.id} />
+        <Select value={target.id} style={{ width: 100 }}  />
         &nbsp;&nbsp;
         做了
         &nbsp;&nbsp;
-        <Select value={action.id} />
+        <Select value={action.id} style={{ width: 100 }}  />
         &nbsp;&nbsp;
       </span>
     )

@@ -55,3 +55,27 @@ export const clearParentNode = (root: any) => {
 
   return root;
 };
+
+
+
+
+export const validateNodes = (root: any, validator: Function) => {
+  let node = root.conditions;
+
+  function walk(walker: any) {
+    if (walker.list) {
+      for (let i = 0; i < walker.list.length; i++) {
+        validator(walker.list[i]);
+        walk(walker.list[i]);
+      }
+    }
+    if (walker.type === 'FILTER_NODE') {
+      validator(walker.action);
+      walk(walker.action);
+    }
+  }
+
+  walk(node);
+
+  return root;
+};

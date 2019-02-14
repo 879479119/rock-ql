@@ -2,6 +2,7 @@ import React, {ReactNode} from 'react'
 import { Select, Input } from 'antd'
 
 interface Props {
+  errors: any;
   node: {
     type: string
     from: {
@@ -17,7 +18,7 @@ interface Props {
 
 export default class RangeRule extends React.Component<Props, object> {
   render() : ReactNode {
-    const { node } = this.props;
+    const { node, errors } = this.props;
 
     if (!node) {
       return null
@@ -26,7 +27,7 @@ export default class RangeRule extends React.Component<Props, object> {
     const { from, to } = node;
 
     return (
-      <span >
+      <span className={errors && errors.has(node) ? 'has-error' : ''} >
         从&nbsp;&nbsp;
         <Input style={{ width: 100 }} value={from.value} />
         &nbsp;&nbsp;到&nbsp;&nbsp;

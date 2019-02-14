@@ -1,13 +1,18 @@
-import React, { ReactNode, createContext } from "react";
-import cloneDeep from 'lodash/cloneDeep'
+import React, { ReactNode, createContext, RefObject } from "react";
+import cloneDeep from "lodash/cloneDeep";
 import { DragDropContext, DragDropContextProvider } from "react-dnd";
 import HTML5Backend from "react-dnd-html5-backend";
 import Entry from "./Entry";
 import Rule from "../Domain/Rule";
 import Group from "../Domain/Group";
-import { assignParentNode } from "../utils/traverse";
+import {
+  assignParentNode,
+  clearParentNode,
+  validateNodes
+} from "../utils/traverse";
 
 interface Props {
+  // ref: RefObject<object>;
   filters: {
     type: string;
     conditions: {
@@ -17,35 +22,38 @@ interface Props {
 }
 
 interface State {
+  errors: any;
   tree: any;
   moveNode: any;
   addNode: any;
   collapseNode: any;
   changeNodeType: any;
   removeNode: any;
+  clearNodeAction: any;
   copyNode: any;
 }
 
 export const FilterContext = createContext({
   tree: null,
-  moveNode: (from: any, to: any) => {}
+  errors: null,
 });
 
 export default class Framework extends React.Component<Props, State> {
   constructor(props: Props) {
     super(props);
     this.state = {
+      errors: null,
       tree: assignParentNode(props.filters),
       moveNode: this.moveNode,
       addNode: this.addNode,
       collapseNode: this.collapseNode,
       removeNode: this.removeNode,
       copyNode: this.copyNode,
+      clearNodeAction: this.clearNodeAction,
       changeNodeType: this.changeNodeType
     };
   }
-  moveNode = (from: any, to: any) => {
-  };
+  moveNode = (from: any, to: any) => {};
   addNode = (node: string, to: any) => {
     if (node === "rule") {
       to.list.push(new Rule("TOPIC_ACTION", to));
@@ -76,6 +84,13 @@ export default class Framework extends React.Component<Props, State> {
     node.type = type;
     this.forceUpdate();
   };
+  clearNodeAction = (node: any) => {
+    if (node.type === 'FILTER_NODE') {
+      Rule.prototype.clear.call(node);
+    }
+    // node.clear && node.clear();
+    this.forceUpdate();
+  };
   removeNode = (node: any) => {
     const index = node.parent.list.findIndex((t: any) => t === node);
     node.parent.list.splice(index, 1);
@@ -84,12 +99,34 @@ export default class Framework extends React.Component<Props, State> {
   copyNode = (node: any) => {
     const index = node.parent.list.findIndex((t: any) => t === node);
     node.parent.list.splice(index, 0, {
-      type: 'FILTER_NODE',
+      type: "FILTER_NODE",
       action: node.action,
       range: node.range,
-      parent: node.parent,
+      parent: node.parent
     });
     this.forceUpdate();
+  };
+
+  /**
+   * 外部方法调用
+   */
+  getFieldsValue = () => {
+    this.validateFieldsValue();
+    return this.state.tree;
+  };
+
+  validateFieldsValue = () => {
+    const errors = new Map();
+    validateNodes(this.state.tree, (node: any) => {
+      if (node.type === "FILTER_AND" || node.type === "FILTER_OR") {
+        if (node.list.length === 0) errors.set(node, "AND/OR筛选列表不能为空");
+      }
+      if (node.type === "USER_ACTION" || node.type === "TOPIC_ACTION") {
+        if (!node.detail.action.id) errors.set(node, "动作不能设置为空");
+        if (!node.detail.target.id) errors.set(node, "目标不能设置为空");
+      }
+    });
+    this.setState({ errors })
   };
 
   render(): ReactNode {

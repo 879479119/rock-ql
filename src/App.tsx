@@ -1,8 +1,9 @@
-import React, { Component } from 'react';
+import React, {Component, createRef, RefObject} from 'react';
 import FilterBuidler from './packages/rock-builder/index'
 import logo from './logo.svg';
 import 'antd/dist/antd.min.css'
-
+import {Button, Input} from "antd";
+import { walk } from './packages/rock-generator'
 
 const sample = {
   type: "SELECT",
@@ -181,10 +182,31 @@ const sample = {
 };
 
 class App extends Component {
+  state = {
+    text: ''
+  }
+  filterRef: RefObject<FilterBuidler> = createRef()
+  handleSubmit = () => {
+    if (this.filterRef.current) {
+      console.info(this.filterRef.current.getFieldsValue())
+    }
+  }
+  handleGenerate = () => {
+    if (this.filterRef.current) {
+      this.setState({
+        text: walk(this.filterRef.current.getFieldsValue())
+      })
+    }
+  }
   render() {
     return (
       <div className="App">
-        <FilterBuidler filters={sample.source.filters} />
+        <FilterBuidler ref={this.filterRef} filters={sample.source.filters} />
+        <div>
+          <Button type="primary" onClick={() => this.handleSubmit()} >OK</Button>
+          <Button onClick={() => this.handleGenerate()} >generate</Button>
+        </div>
+        <Input.TextArea value={this.state.text} autosize />
       </div>
     );
   }

@@ -14,6 +14,11 @@ export default class Rule {
   parent = null;
   action = {
     type: "TOPIC_ACTION",
-    detail: null
+    detail: { action: { id: undefined }, target: { id: undefined } }
   };
+
+
+  clear() {
+    this.action.detail = { action: { id: undefined }, target: { id: undefined } }
+  }
 }
