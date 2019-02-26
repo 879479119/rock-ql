@@ -16,9 +16,12 @@ function Null() {
   return null;
 }
 
+/**
+ * Facade Component
+ */
 export default class Entry extends React.Component<Props, object> {
   render(): ReactNode {
-    const { type, list } = this.props.node;
+    const { type } = this.props.node;
     if (!type) {
       return null;
     }
@@ -54,11 +57,11 @@ export default class Entry extends React.Component<Props, object> {
 
     return (
       <FilterContext.Consumer>
-        {(context) =>
+        {context =>
           React.createElement(NodeComponent, {
             node: this.props.node,
             errors: context.errors,
-            context,
+            context
           })
         }
       </FilterContext.Consumer>

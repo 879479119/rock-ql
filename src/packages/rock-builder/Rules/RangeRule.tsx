@@ -1,7 +1,11 @@
 import React, {ReactNode} from 'react'
-import { Select, Input } from 'antd'
+import { DatePicker, Input } from 'antd'
+import moment from "moment";
+
+const { RangePicker } = DatePicker;
 
 interface Props {
+  context: any;
   errors: any;
   node: {
     type: string
@@ -17,6 +21,10 @@ interface Props {
 }
 
 export default class RangeRule extends React.Component<Props, object> {
+  dateChange = (_: any, strings: [string, string]) => {
+    this.props.context.changeDateNodeValue(this.props.node.from, strings[0])
+    this.props.context.changeDateNodeValue(this.props.node.to, strings[1])
+  };
   render() : ReactNode {
     const { node, errors } = this.props;
 
@@ -28,10 +36,13 @@ export default class RangeRule extends React.Component<Props, object> {
 
     return (
       <span className={errors && errors.has(node) ? 'has-error' : ''} >
-        从&nbsp;&nbsp;
-        <Input style={{ width: 100 }} value={from.value} />
-        &nbsp;&nbsp;到&nbsp;&nbsp;
-        <Input style={{ width: 100 }} value={to.value} />
+        在&nbsp;&nbsp;
+        <RangePicker
+          value={to.value ? [moment(from.value), moment(to.value)] : undefined}
+          showTime={false}
+          style={{ width: 240}}
+          onChange={this.dateChange}
+        />
         &nbsp;&nbsp;
       </span>
     )

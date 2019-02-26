@@ -15,7 +15,11 @@ interface Props {
 
 export default class GroupTools extends React.Component<Props, object> {
   render(): ReactNode {
-    const { type } = this.props;
+    const { type, node } = this.props;
+    let disabled = false;
+    if (node.parent && node.parent.type === 'WHERE') {
+      disabled = true;
+    }
 
     return (
       <FilterContext.Consumer>
@@ -65,10 +69,16 @@ export default class GroupTools extends React.Component<Props, object> {
                     <Icon type="down" />
                   </Button>
                 </Dropdown>
-                <Button icon="delete" type="danger" onClick={() => context.removeNode(this.props.node)} >
+                <Button
+                  icon="delete"
+                  type="danger"
+                  disabled={disabled}
+                  onClick={() => context.removeNode(this.props.node)}
+                >
                   <span>删除组</span>
                 </Button>
                 <Button
+                  disabled={disabled}
                   onClick={() => {
                     context.collapseNode(this.props.node);
                   }}

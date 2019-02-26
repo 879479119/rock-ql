@@ -30,12 +30,15 @@ interface State {
   changeNodeType: any;
   removeNode: any;
   clearNodeAction: any;
+  clearErrors: any;
+  changeIDNodeValue: any;
+  changeDateNodeValue: any;
   copyNode: any;
 }
 
 export const FilterContext = createContext({
   tree: null,
-  errors: null,
+  errors: null
 });
 
 export default class Framework extends React.Component<Props, State> {
@@ -50,6 +53,9 @@ export default class Framework extends React.Component<Props, State> {
       removeNode: this.removeNode,
       copyNode: this.copyNode,
       clearNodeAction: this.clearNodeAction,
+      clearErrors: this.clearErrors,
+      changeIDNodeValue: this.changeIDNodeValue,
+      changeDateNodeValue: this.changeDateNodeValue,
       changeNodeType: this.changeNodeType
     };
   }
@@ -64,7 +70,8 @@ export default class Framework extends React.Component<Props, State> {
     } else {
       throw TypeError("Unexpected node type, cannot be inserted");
     }
-    this.forceUpdate();
+    this.clearErrors();
+    // this.forceUpdate();
   };
   collapseNode = (node: any, filter: string = "FILTER_OR") => {
     const group = new Group(filter, node.parent);
@@ -78,40 +85,58 @@ export default class Framework extends React.Component<Props, State> {
       group.list = [node];
       node.parent = group;
     }
+    // this.clearErrors();
     this.forceUpdate();
   };
   changeNodeType = (node: any, type: string) => {
     node.type = type;
-    this.forceUpdate();
+    this.clearErrors();
+    // this.forceUpdate();
+  };
+  changeIDNodeValue = (node: any, val: any) => {
+    node.id = val;
+    this.clearErrors();
+    // this.forceUpdate();
+  };
+  changeDateNodeValue = (node: any, val: any) => {
+    node.value = val;
+    this.clearErrors();
+    // this.forceUpdate();
   };
   clearNodeAction = (node: any) => {
-    if (node.type === 'FILTER_NODE') {
+    if (node.type === "FILTER_NODE") {
       Rule.prototype.clear.call(node);
     }
     // node.clear && node.clear();
-    this.forceUpdate();
+    this.clearErrors();
+    // this.forceUpdate();
   };
   removeNode = (node: any) => {
     const index = node.parent.list.findIndex((t: any) => t === node);
     node.parent.list.splice(index, 1);
-    this.forceUpdate();
+    this.clearErrors();
+    // this.forceUpdate();
   };
   copyNode = (node: any) => {
     const index = node.parent.list.findIndex((t: any) => t === node);
     node.parent.list.splice(index, 0, {
       type: "FILTER_NODE",
-      action: node.action,
-      range: node.range,
+      action: cloneDeep(node.action),
+      range: cloneDeep(node.range),
       parent: node.parent
     });
-    this.forceUpdate();
+    // node.parent.list.splice(index, 0, cloneDeep(node));
+    this.clearErrors();
+    // this.forceUpdate();
   };
 
   /**
    * 外部方法调用
    */
   getFieldsValue = () => {
-    this.validateFieldsValue();
+    if (this.validateFieldsValue()) {
+      return false;
+    }
     return this.state.tree;
   };
 
@@ -126,7 +151,17 @@ export default class Framework extends React.Component<Props, State> {
         if (!node.detail.target.id) errors.set(node, "目标不能设置为空");
       }
     });
-    this.setState({ errors })
+    this.setState({ errors });
+    return errors.size ? errors : null;
+  };
+
+  clearErrors = (node?: any) => {
+    if (!node) {
+      this.setState({ errors: null });
+      return;
+    }
+    this.state.errors.delete(node);
+    this.forceUpdate();
   };
 
   render(): ReactNode {

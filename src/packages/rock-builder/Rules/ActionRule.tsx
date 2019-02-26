@@ -24,21 +24,9 @@ export default class ActionRule extends React.Component<Props, object> {
     const { node } = this.props;
     const { action, range } = node;
 
-    // if (range) {
-    //   return (
-    //     <div className="rule-tool">
-    //       <SplitLine />
-    //       <Entry node={action} />
-    //       <Entry node={range} />
-    //       <RuleTools node={this.props.node} />
-    //     </div>
-    //   )
-    // }
-
     const options = [
       { key: "USER_ACTION", name: "用户" },
-      { key: "TOPIC_ACTION", name: "话题" },
-      { key: "RANGE", name: "时间" }
+      { key: "TOPIC_ACTION", name: "话题" }
     ];
 
     return (
@@ -53,6 +41,7 @@ export default class ActionRule extends React.Component<Props, object> {
         </Select>
         &nbsp; &nbsp;
         <Entry node={action} />
+        {range ? <Entry node={range} /> : null}
         <RuleTools node={this.props.node} />
       </div>
     );
