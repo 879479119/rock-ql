@@ -1,0 +1,13 @@
+{
+  "name": "rock-parser",
+  "version": "0.1.0",
+  "private": true,
+  "main": "pql.js",
+  "scripts": {
+    "jison:build": "cd jison && jison pql.jison -o ../pql.js",
+    "jison:build:example": "jison packages/rock-parser/jison/example.jison"
+  },
+  "dependencies": {
+    "jison": "^0.4.18"
+  }
+}
