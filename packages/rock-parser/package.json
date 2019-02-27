@@ -1,7 +1,7 @@
 {
   "name": "rock-parser",
   "version": "0.1.0",
-  "private": true,
+  "private": false,
   "main": "pql.js",
   "scripts": {
     "jison:build": "cd jison && jison pql.jison -o ../pql.js",

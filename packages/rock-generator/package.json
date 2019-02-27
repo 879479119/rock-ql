@@ -1,7 +1,7 @@
 {
   "name": "rock-generator",
   "version": "0.1.0",
-  "private": true,
+  "private": false,
   "main": "index.js",
   "scripts": {
     "build": "node scripts/build.js",
