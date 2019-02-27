@@ -3,7 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "main": "dist/index.js",
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "dependencies": {
     "@types/jest": "^24.0.9",
     "@types/lodash": "^4.14.121",
