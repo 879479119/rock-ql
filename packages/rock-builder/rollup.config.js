@@ -11,7 +11,7 @@ const config = {
   input: 'index.js',
   // browser-friendly UMD build
   output: {
-    format: 'umd',
+    format: 'cjs',
     name: 'index',
     file: pkg.main,
   },
