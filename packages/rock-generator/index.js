@@ -1,4 +1,4 @@
-export const walk = (node, depth) => {
+exports.walk = (node, depth) => {
   const type = node.type;
 
   const entries = {
