@@ -9,7 +9,7 @@ exports.walk = (node, depth) => {
     },
     COUNT: {
       generate: n => {
-        return "COUNT";
+        return "COUNT ";
       }
     },
     SOURCE_LIST: {
