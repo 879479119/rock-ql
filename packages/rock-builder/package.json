@@ -3,7 +3,7 @@
   "version": "0.2.5",
   "private": false,
   "main": "dist/index.js",
-  "module": "es/index.js",
+  "module": "es/Framework/index.js",
   "lib": "lib/index.js",
   "files": [
     "dist",
@@ -25,9 +25,11 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "npm run copycss && npm run build:ts",
     "build:lib": "rollup -c rollup.config.js",
     "build:es": "rollup -c rollup.es.config.js",
+    "build:ts": "tsc src/**/**.tsx --jsx react --outDir es --module ESNext --t ES5 --importHelpers",
+    "copycss": "rsync -r --include '*/' --include '*.css' --exclude '*' ./src/ ./es/",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

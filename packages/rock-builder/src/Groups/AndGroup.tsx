@@ -1,12 +1,8 @@
 import React, { ReactNode, Fragment } from "react";
-import { DragSource, DropTarget } from "react-dnd";
-import { TYPES } from "../utils/constants";
-import { FilterContext } from '../Framework/index'
 import Entry from "../Framework/Entry";
 import GroupTools from "../Tools/GroupTools";
 import "./index.css";
 import GuideLine from "../Tools/GuideLine";
-import SplitLine from "../Tools/SplitLine";
 
 interface Props {
   node: {
@@ -36,7 +32,8 @@ export default class AndGroup extends React.Component<Props, object> {
             <div>
               <GuideLine />
               {list.map((item, index) => {
-                const ret = [<Entry node={item} key={index} />];
+                const ret = <Entry node={item} key={index} />;
+                console.info(666, item, ret)
                 return ret;
               })}
             </div>

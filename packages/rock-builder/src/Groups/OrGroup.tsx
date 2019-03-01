@@ -3,7 +3,6 @@ import Entry from '../Framework/Entry'
 import GroupTools from "../Tools/GroupTools";
 import './index.css'
 import GuideLine from "../Tools/GuideLine";
-import SplitLine from "../Tools/SplitLine";
 
 interface Props {
   errors: any;

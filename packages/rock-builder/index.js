@@ -1,3 +1,3 @@
-import Framework from './src/Framework/index'
+import Framework from './src/Framework'
 
 export default Framework;

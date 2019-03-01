@@ -2,7 +2,7 @@ import React, { ReactNode } from "react";
 import Entry from "../Framework/Entry";
 import SplitLine from "../Tools/SplitLine";
 import RuleTools from "../Tools/RuleTools";
-import { Select } from "antd";
+import Select from "antd/es/select";
 
 const { Option } = Select;
 

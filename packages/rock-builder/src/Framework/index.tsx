@@ -2,6 +2,7 @@ import React, { ReactNode, createContext, RefObject } from "react";
 import _ from "lodash";
 // import { DragDropContext, DragDropContextProvider } from "react-dnd";
 // import HTML5Backend from "react-dnd-html5-backend";
+import FilterContext from './Context';
 import Entry from "./Entry";
 import Rule from "../Domain/Rule";
 import Group from "../Domain/Group";
@@ -35,11 +36,6 @@ interface State {
   changeDateNodeValue: any;
   copyNode: any;
 }
-
-export const FilterContext = createContext({
-  tree: null,
-  errors: null
-});
 
 export default class Framework extends React.Component<Props, State> {
   constructor(props: Props) {

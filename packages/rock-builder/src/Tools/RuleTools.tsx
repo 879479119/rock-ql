@@ -1,9 +1,8 @@
 import React, { ReactNode } from "react";
-import Entry from "../Framework/Entry";
 import ButtonGroup from "antd/es/button/button-group";
 import Button from "antd/es/button/button";
 import "./index.css";
-import { FilterContext } from "../Framework";
+import FilterContext from "../Framework/Context";
 
 interface Props {
   node: any

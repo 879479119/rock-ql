@@ -1,5 +1,6 @@
 import React, { ReactNode } from "react";
-import { Select, Input } from "antd";
+import Select from "antd/es/select";
+
 import RuleTools from "../Tools/RuleTools";
 
 const { Option } = Select;

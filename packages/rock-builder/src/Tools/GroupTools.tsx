@@ -1,12 +1,12 @@
 import React, { ReactNode } from "react";
-import Entry from "../Framework/Entry";
-import { FilterContext } from "../Framework/index";
+import FilterContext from "../Framework/Context";
 import ButtonGroup from "antd/es/button/button-group";
 import Button from "antd/es/button/button";
 import Dropdown from "antd/es/dropdown/dropdown";
-import { Icon, Menu } from "antd";
 import MenuItem from "antd/lib/menu/MenuItem";
 import "./index.css";
+import Menu from "antd/es/menu";
+import Icon from "antd/es/icon";
 
 interface Props {
   type: string;

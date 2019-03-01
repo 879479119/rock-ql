@@ -1,6 +1,5 @@
 import React, {ReactNode} from 'react'
-import { Select, Input } from 'antd'
-import RuleTools from "../Tools/RuleTools";
+import Select from "antd/es/select";
 
 interface Props {
   errors: any;

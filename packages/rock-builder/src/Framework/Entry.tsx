@@ -1,10 +1,11 @@
 import React, { ComponentClass, Fragment, ReactNode } from "react";
+import FilterContext from "./Context";
+
 import AndGroup from "../Groups/AndGroup";
 import OrGroup from "../Groups/OrGroup";
-import { FilterContext } from "./index";
-
 import ActionRule from "../Rules/ActionRule";
 import RangeRule from "../Rules/RangeRule";
+
 import UserActionRule from "../Rules/UserActionRule";
 import TopicActionRule from "../Rules/TopicActionRule";
 

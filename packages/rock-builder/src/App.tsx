@@ -186,7 +186,7 @@ class App extends Component<any, any> {
   };
   filterRef: RefObject<FilterBuidler> = createRef();
   handleSubmit = () => {
-    if (this.filterRef.current) { 
+    if (this.filterRef.current) {
       console.info(this.filterRef.current.getFieldsValue());
     }
   };
