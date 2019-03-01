@@ -3,8 +3,11 @@
   "version": "0.2.4",
   "private": false,
   "main": "dist/index.js",
+  "module": "es/index.js",
+  "lib": "lib/index.js",
   "files": [
-    "dist"
+    "dist",
+    "es",
   ],
   "dependencies": {
     "@types/jest": "^24.0.9",
@@ -24,6 +27,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "build:lib": "rollup -c rollup.config.js",
+    "build:es": "rollup -c rollup.es.config.js",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

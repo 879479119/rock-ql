@@ -9,11 +9,10 @@ import pkg from './package.json'
 
 const config = {
   input: 'index.js',
-  // browser-friendly UMD build
   output: {
-    format: 'cjs',
+    format: 'es',
     name: 'index',
-    file: pkg.main,
+    file: pkg.module,
   },
   plugins: [
     postcss({
