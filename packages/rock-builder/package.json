@@ -7,7 +7,7 @@
   "lib": "lib/index.js",
   "files": [
     "dist",
-    "es",
+    "es"
   ],
   "dependencies": {
     "@types/jest": "^24.0.9",
