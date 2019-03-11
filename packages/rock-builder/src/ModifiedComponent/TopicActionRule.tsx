@@ -1,13 +1,22 @@
 import React, { ReactNode } from "react";
 import Select from "antd/es/select";
 
-import RuleTools from "../Tools/RuleTools";
+const { Option, OptGroup } = Select;
 
-const { Option } = Select;
+export interface Option {
+  id: number;
+  category: string;
+  name: string;
+}
+
+export interface OptionCollapse {
+  [name: string]: Array<Option>
+}
 
 interface Props {
   context: any;
   errors: any;
+  actionOptions: OptionCollapse;
   node: {
     type: string;
     detail: {
@@ -21,11 +30,14 @@ interface Props {
   };
 }
 
-export default class TopicActionRule extends React.Component<Props, object> {
-  state = {
-    targetOptions: ["1112", "3334"],
-    actionOptions: ["awsl", "ddddd"]
-  };
+export default class TopicActionRule extends React.Component<Props, any> {
+  constructor(props: Props) {
+    super(props);
+    this.state = {
+      targetOptions: ["1112", "3334"],
+      actionOptions: props.actionOptions,
+    };
+  }
   componentWillMount() {
     this.setState({});
   }
@@ -49,7 +61,7 @@ export default class TopicActionRule extends React.Component<Props, object> {
           style={{ width: 100 }}
           onChange={this.targetChange}
         >
-          {targetOptions.map(t => (
+          {targetOptions.map((t: string) => (
             <Option key={t}>{t}</Option>
           ))}
         </Select>
@@ -60,9 +72,15 @@ export default class TopicActionRule extends React.Component<Props, object> {
           style={{ width: 100 }}
           onChange={this.actionChange}
         >
-          {actionOptions.map(t => (
-            <Option key={t}>{t}</Option>
-          ))}
+          {
+            Object.entries(actionOptions).map(([key, options]: [string, any]) => (
+              <OptGroup label={key} key={key} >
+                {
+                  options.map((option : Option) => <Option key={option.id + ''} >{option.name}</Option>)
+                }
+              </OptGroup>
+            ))
+          }
         </Select>
         &nbsp;&nbsp;
       </span>

@@ -21,18 +21,23 @@ export default class ActionRule extends React.Component<Props, object> {
   };
 
   render(): ReactNode {
-    const { node } = this.props;
+    const { node, context } = this.props;
     const { action, range } = node;
 
-    const options = [
-      { key: "USER_ACTION", name: "用户" },
-      { key: "TOPIC_ACTION", name: "话题" }
-    ];
+    // const options = [
+    //   { key: "USER_ACTION", name: "用户" },
+    //   { key: "TOPIC_ACTION", name: "话题" }
+    // ];
+    const options = Object.entries(context.rules).map(([key, value]: [string, any]) => {
+      return {
+        key, name: value.label
+      }
+    })
 
     return (
       <div className="rule-tool">
         <SplitLine />
-        <Select value={node.action.type} onChange={this.typeChange}>
+        <Select value={node.action.type} style={{ width: 100 }} onChange={this.typeChange}>
           {options.map(op => (
             <Option key={op.key} value={op.key}>
               {op.name}

@@ -2,7 +2,7 @@ import React, { ReactNode, createContext, RefObject } from "react";
 import _ from "lodash";
 // import { DragDropContext, DragDropContextProvider } from "react-dnd";
 // import HTML5Backend from "react-dnd-html5-backend";
-import FilterContext from './Context';
+import FilterContext, {Rules} from './Context';
 import Entry from "./Entry";
 import Rule from "../Domain/Rule";
 import Group from "../Domain/Group";
@@ -20,11 +20,13 @@ interface Props {
       type: string;
     };
   };
+  rules: Rules
 }
 
 interface State {
   errors: any;
   tree: any;
+  rules: Rules;
   moveNode: any;
   addNode: any;
   collapseNode: any;
@@ -42,6 +44,7 @@ export default class Framework extends React.Component<Props, State> {
     super(props);
     this.state = {
       errors: null,
+      rules: props.rules,
       tree: assignParentNode(props.filters),
       moveNode: this.moveNode,
       addNode: this.addNode,

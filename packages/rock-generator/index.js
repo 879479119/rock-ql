@@ -1,4 +1,4 @@
-exports.walk = (node, depth) => {
+const walk = (node, depth) => {
   const type = node.type;
 
   const entries = {
@@ -95,3 +95,5 @@ exports.walk = (node, depth) => {
 
   return entries[type].generate(node, depth);
 };
+
+exports.walk = walk;

@@ -6,8 +6,8 @@ import OrGroup from "../Groups/OrGroup";
 import ActionRule from "../Rules/ActionRule";
 import RangeRule from "../Rules/RangeRule";
 
-import UserActionRule from "../Rules/UserActionRule";
-import TopicActionRule from "../Rules/TopicActionRule";
+// import UserActionRule from "../Rules/UserActionRule";
+// import TopicActionRule from "../Rules/TopicActionRule";
 
 interface Props {
   node: any;
@@ -46,25 +46,35 @@ export default class Entry extends React.Component<Props, object> {
      * 下面的几种是根据业务场景设计的组件
      */
 
-    if (type === "USER_ACTION") {
-      NodeComponent = UserActionRule;
-    }
-    if (type === "TOPIC_ACTION") {
-      NodeComponent = TopicActionRule;
-    }
     if (type === "RANGE") {
       NodeComponent = RangeRule;
     }
 
+    // if (type === "USER_ACTION") {
+    //   NodeComponent = UserActionRule;
+    // }
+    // if (type === "TOPIC_ACTION") {
+    //   NodeComponent = TopicActionRule;
+    // }
+
     return (
       <FilterContext.Consumer>
-        {context =>
-          React.createElement(NodeComponent, {
+        {context => {
+          if(NodeComponent !== Null) {
+            return React.createElement(NodeComponent, {
+              node: this.props.node,
+              errors: context.errors,
+              context
+            })
+          }
+          // 剩下的情况就是用户自定义的组件节点了
+          return React.createElement(context.rules[type].component, {
             node: this.props.node,
             errors: context.errors,
-            context
+            context,
+            ...context.rules[type].props,
           })
-        }
+        }}
       </FilterContext.Consumer>
     );
   }

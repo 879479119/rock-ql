@@ -16,7 +16,7 @@ interface Props {
   }
 }
 
-export default class UserActionRule extends React.Component<Props, object> {
+export default class INTERNAL__UserActionRule extends React.Component<Props, object> {
   render() : ReactNode {
     const { errors, node } = this.props;
     const { action, target } = this.props.node.detail;
