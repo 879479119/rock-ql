@@ -33,7 +33,6 @@ export default class AndGroup extends React.Component<Props, object> {
               <GuideLine />
               {list.map((item, index) => {
                 const ret = <Entry node={item} key={index} />;
-                console.info(666, item, ret)
                 return ret;
               })}
             </div>
