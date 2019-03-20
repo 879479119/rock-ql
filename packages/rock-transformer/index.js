@@ -55,14 +55,14 @@ const transformNode = (node) => {
 const walker1 = (node) => {
   // compose
   if (node.predicate === 'OR') {
-    const children = node.subConditions.map(walker).concat(node.actions.map(transformAction))
+    const children = node.subConditions.map(walker1).concat(node.actions.map(transformAction))
     return {
       type: 'FILTER_OR',
       list: children
     }
   }
   if (node.predicate === 'AND') {
-    const children = node.subConditions.map(walker).concat(node.actions.map(transformAction))
+    const children = node.subConditions.map(walker1).concat(node.actions.map(transformAction))
     return {
       type: 'FILTER_AND',
       list: children
