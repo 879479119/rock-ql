@@ -39,7 +39,7 @@ export default class RangeRule extends React.Component<Props, object> {
         在&nbsp;&nbsp;
         <RangePicker
           value={to.value ? [moment(from.value), moment(to.value)] : undefined}
-          showTime={false}
+          showTime
           style={{ width: 240}}
           onChange={this.dateChange}
         />

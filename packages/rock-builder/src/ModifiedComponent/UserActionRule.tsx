@@ -1,4 +1,5 @@
 import React, { ReactNode } from "react";
+import Input from "antd/es/input";
 import Select from "antd/es/select";
 import modActionHOC from '../Framework/modActionHOC'
 
@@ -15,7 +16,7 @@ export interface OptionCollapse {
 }
 
 interface Props {
-  targetChange: () => {}
+  targetChange: (e: string) => {}
   actionChange: () => {}
   errors: any;
   actionOptions: OptionCollapse;
@@ -26,7 +27,7 @@ interface Props {
         id: number | string;
       };
       target: {
-        id: number | string;
+        value: string;
       };
     };
   };
@@ -36,28 +37,23 @@ class UserActionRule extends React.Component<Props, any> {
   constructor(props: Props) {
     super(props);
     this.state = {
-      targetOptions: ["1112", "3334"],
       actionOptions: props.actionOptions,
     };
   }
   render(): ReactNode {
     const { errors, node } = this.props;
     const { action, target } = this.props.node.detail;
-    const { targetOptions, actionOptions } = this.state;
+    const { actionOptions } = this.state;
 
     return (
       <span className={errors && errors.has(node) ? "has-error" : ""}>
         对用户&nbsp;&nbsp;
-        <Select
-          value={target.id}
-          placeholder="请选择"
+        <Input
+          value={target.value}
+          placeholder="请输入"
           style={{ width: 100 }}
-          onChange={this.props.targetChange}
-        >
-          {targetOptions.map((t: string) => (
-            <Option key={t}>{t}</Option>
-          ))}
-        </Select>
+          onChange={(e) => this.props.targetChange(e.target.value)}
+        />
         &nbsp;&nbsp; 做了 &nbsp;&nbsp;
         <Select
           value={action.id}

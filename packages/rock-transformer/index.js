@@ -2,6 +2,13 @@
  * 讲请求的拿到的数据转化为标准的AST，便于进行渲染和处理
  * @param origin
  */
+
+const config = {
+  subjects: [],
+  mapWithKey: {},
+  mapWithType: {},
+}
+
 const request2AST = (origin) => {
   return walker1(origin)
 }
@@ -14,15 +21,15 @@ const transformAction = (node) => {
   return {
     type: "FILTER_NODE",
     action: {
-      type: node.subjectId === 0 ? "TOPIC_ACTION" : "USER_ACTION",
+      type: config.mapWithKey ? "TOPIC_ACTION" : "USER_ACTION",
       detail: {
         action: {
           type: "ID_NODE",
           id: node.actionId,
         },
         target: {
-          type: "ID_NODE",
-          id: node.subjectId,
+          type: "TEXT_NODE",
+          value: node.actionValue
         }
       }
     },
@@ -46,7 +53,7 @@ const transformNode = (node) => {
     "subjectName": node.action.type === 'TOPIC_ACTION' ? "话题" : '会员',
     "actionId": +node.action.detail.action.id,
     "actionName": node.action.detail.action.comment || '',
-    "actionValue": "test value",
+    "actionValue": node.target ? node.target.value : '',
     "from": node.range ? node.range.from.value : '',
     "to": node.range ? node.range.to.value : ''
   }
@@ -106,5 +113,27 @@ const walker2 = (node) => {
   throw TypeError(`Unexpected node, whose type is "${node.predicate}"`)
 }
 
+const setSubjects = (subjects) => {
+  config.subjects = subjects
+  subjects.forEach((subject) => {
+    config.mapWithKey[subject.id] = subject;
+    config.mapWithType[subject.type] = subject;
+  })
+}
+
+setSubjects([
+  {
+    id: 2,
+    name: '话题',
+    type: 'TOPIC_ACTION',
+  },
+  {
+    id: 3,
+    name: '用户',
+    type: 'USER_ACTION',
+  },
+])
+
 exports.request2AST = request2AST
 exports.AST2Request = AST2Request
+exports.setSubjects = setSubjects

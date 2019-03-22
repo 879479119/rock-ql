@@ -21,11 +21,10 @@ interface Props {
 
 export default function (WrappedComponent: ReactComponentLike): ReactComponentLike {
 
-  return class TopicActionRule extends React.Component<Props, any> {
+  return class AST_HOC extends React.Component<Props, any> {
     constructor(props: Props) {
       super(props);
       this.state = {
-        targetOptions: ["1112", "3334"],
         actionOptions: props.actionOptions,
       };
     }
@@ -34,7 +33,7 @@ export default function (WrappedComponent: ReactComponentLike): ReactComponentLi
       this.props.context.changeIDNodeValue(this.props.node.detail.action, val)
     };
     targetChange = (val: any) => {
-      this.props.context.changeIDNodeValue(this.props.node.detail.target, val)
+      this.props.context.changeTextNodeValue(this.props.node.detail.target, val)
     };
 
     render (): ReactNode {

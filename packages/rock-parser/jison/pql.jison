@@ -46,7 +46,7 @@
 %% /* language grammar */
 
 Pql
- : SelectStatement EOF                       { console.log('ok'); return $1 }
+ : SelectStatement EOF                       { return $1 }
  ;
 
 SelectStatement
@@ -113,6 +113,10 @@ IDReference
  | 'ID' 'NUMBER'                                    -> { type: 'ID_NODE', id: $2 }
  ;
 
+Text
+ : BacktickedIdentifier     -> { type: 'TEXT_NODE', value: $1 }
+ ;
+
 DateReference
  : BacktickedIdentifier                       -> { type: 'DATE', value: $1 }
  ;
@@ -162,7 +166,7 @@ TypeAction
  ;
 
 ActionReference
- : 'DO' IDReference 'TO' IDReference            -> { action: $2, target: $4 }
+ : 'DO' IDReference 'TO' Text                   -> { action: $2, target: $4 }
  | 'DO' IDReference                             -> { action: $2 }
  ;
 

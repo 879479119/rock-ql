@@ -35,6 +35,7 @@ interface State {
   clearNodeAction: any;
   clearErrors: any;
   changeIDNodeValue: any;
+  changeTextNodeValue: any;
   changeDateNodeValue: any;
   copyNode: any;
 }
@@ -54,6 +55,7 @@ export default class Framework extends React.Component<Props, State> {
       clearNodeAction: this.clearNodeAction,
       clearErrors: this.clearErrors,
       changeIDNodeValue: this.changeIDNodeValue,
+      changeTextNodeValue: this.changeTextNodeValue,
       changeDateNodeValue: this.changeDateNodeValue,
       changeNodeType: this.changeNodeType
     };
@@ -94,6 +96,11 @@ export default class Framework extends React.Component<Props, State> {
   };
   changeIDNodeValue = (node: any, val: any) => {
     node.id = val;
+    this.clearErrors();
+    // this.forceUpdate();
+  };
+  changeTextNodeValue = (node: any, val: any) => {
+    node.value = val;
     this.clearErrors();
     // this.forceUpdate();
   };
@@ -147,7 +154,7 @@ export default class Framework extends React.Component<Props, State> {
       }
       if (node.type === "USER_ACTION" || node.type === "TOPIC_ACTION") {
         if (!node.detail.action.id) errors.set(node, "动作不能设置为空");
-        if (!node.detail.target.id) errors.set(node, "目标不能设置为空");
+        if (!node.detail.target.value) errors.set(node, "目标不能设置为空");
       }
     });
     this.setState({ errors });

@@ -71,6 +71,11 @@ const walk = (node, depth) => {
         return `ID ${n.id}`;
       }
     },
+    TEXT_NODE: {
+      generate: n => {
+        return `\`${n.value}\``;
+      }
+    },
     RANGE: {
       generate: n => {
         return `RANGE ${walk(n.from)} UNTIL ${walk(n.to)}`;
