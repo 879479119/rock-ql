@@ -4,7 +4,7 @@
   position: absolute;
   top: 0;
   left: 28px;
-  z-index: -1;
+  /*z-index: -1;*/
   border-left: 1px solid lightgray;
 }
 
@@ -20,7 +20,9 @@
 }
 
 .group-tool {
+  position: relative;
   margin: 10px;
+  z-index: 1;
 }
 
 .rule-tool {
