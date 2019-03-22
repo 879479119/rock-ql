@@ -1,6 +1,6 @@
 {
   "name": "rock-builder",
-  "version": "0.2.8",
+  "version": "0.3.0",
   "private": false,
   "main": "dist/index.js",
   "module": "es/Framework/index.js",
@@ -20,7 +20,7 @@
     "react-dnd": "^7.0.2",
     "react-dom": "^16.8.3",
     "react-scripts": "2.1.5",
-    "rock-generator": "^0.2.7",
+    "rock-generator": "^0.3.0",
     "typescript": "^3.3.3333"
   },
   "scripts": {
