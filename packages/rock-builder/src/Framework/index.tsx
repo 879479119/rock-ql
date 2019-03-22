@@ -94,8 +94,9 @@ export default class Framework extends React.Component<Props, State> {
     this.clearErrors();
     // this.forceUpdate();
   };
-  changeIDNodeValue = (node: any, val: any) => {
+  changeIDNodeValue = (node: any, val: any, comment?: string) => {
     node.id = val;
+    node.comment = comment;
     this.clearErrors();
     // this.forceUpdate();
   };

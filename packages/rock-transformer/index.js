@@ -26,6 +26,7 @@ const transformAction = (node) => {
         action: {
           type: "ID_NODE",
           id: node.actionId,
+          comment: node.actionName,
         },
         target: {
           type: "TEXT_NODE",
@@ -53,7 +54,7 @@ const transformNode = (node) => {
     "subjectName": config.mapWithType[node.action.type].name,
     "actionId": +node.action.detail.action.id,
     "actionName": node.action.detail.action.comment || '',
-    "actionValue": node.target ? node.target.value : '',
+    "actionValue": node.action.detail.target.value || '',
     "from": node.range ? node.range.from.value : '',
     "to": node.range ? node.range.to.value : ''
   }

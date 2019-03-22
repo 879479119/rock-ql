@@ -29,8 +29,8 @@ export default function (WrappedComponent: ReactComponentLike): ReactComponentLi
       };
     }
 
-    actionChange = (val: any) => {
-      this.props.context.changeIDNodeValue(this.props.node.detail.action, val)
+    actionChange = (val: any, comment?: string) => {
+      this.props.context.changeIDNodeValue(this.props.node.detail.action, val, comment)
     };
     targetChange = (val: any) => {
       this.props.context.changeTextNodeValue(this.props.node.detail.target, val)
