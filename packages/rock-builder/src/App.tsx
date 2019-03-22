@@ -377,6 +377,7 @@ class App extends Component<any, any> {
               label: '话题',
               component: TopicActionRule,
               props: {
+                actionOptionList: filter[0].actions,
                 actionOptions: collapseList(filter[0].actions),
               }
             },
@@ -384,6 +385,7 @@ class App extends Component<any, any> {
               label: '用户',
               component: UserActionRule,
               props: {
+                actionOptionList: filter[1].actions,
                 actionOptions: collapseList(filter[1].actions),
               }
             },

@@ -17,8 +17,9 @@ export interface OptionCollapse {
 
 interface Props {
   targetChange: (e: string) => {}
-  actionChange: (id: number, comment: string) => {}
+  actionChange: (id: string | number, comment: string) => {}
   errors: any;
+  actionOptionList: []
   actionOptions: OptionCollapse;
   node: {
     type: string;
@@ -59,8 +60,9 @@ class UserActionRule extends React.Component<Props, any> {
           value={action.id}
           placeholder="请选择"
           style={{ width: 100 }}
-          onChange={(val) => {
-            this.props.actionChange(+val, actionOptions[val])
+          onChange={(val: number | string) => {
+            const item: any = this.props.actionOptionList.find((t: any) => +t.id === +val)
+            this.props.actionChange(val, item.name)
           }}
         >
           {

@@ -6,6 +6,7 @@ interface Props {
   context: any;
   errors: any;
   actionOptions: OptionCollapse;
+  actionOptionList: [];
   node: {
     type: string;
     detail: {
@@ -41,6 +42,7 @@ export default function (WrappedComponent: ReactComponentLike): ReactComponentLi
         node: this.props.node,
         errors: this.props.errors,
         actionOptions: this.props.actionOptions,
+        actionOptionList: this.props.actionOptionList,
         actionChange: this.actionChange,
         targetChange: this.targetChange,
       })
