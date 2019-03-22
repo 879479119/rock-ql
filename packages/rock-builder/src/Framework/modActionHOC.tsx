@@ -3,6 +3,7 @@ import {OptionCollapse} from "../ModifiedComponent/TopicActionRule";
 import {ReactComponentLike} from "prop-types";
 
 interface Props {
+  disabled: boolean;
   context: any;
   errors: any;
   actionOptions: OptionCollapse;
@@ -39,6 +40,7 @@ export default function (WrappedComponent: ReactComponentLike): ReactComponentLi
 
     render (): ReactNode {
       return React.createElement(WrappedComponent, {
+        disabled: this.props.disabled,
         node: this.props.node,
         errors: this.props.errors,
         actionOptions: this.props.actionOptions,

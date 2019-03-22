@@ -3,6 +3,7 @@ import {ReactComponentLike} from "prop-types";
 
 interface Rule {
   component: ReactComponentLike,
+  label: string,
   props?: object,
 }
 
@@ -13,6 +14,7 @@ export interface Rules {
 const rules: Rules = {};
 
 const FilterContext = createContext({
+  disabled: false,
   tree: null,
   errors: null,
   rules,

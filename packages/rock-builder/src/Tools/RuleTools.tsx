@@ -6,18 +6,21 @@ import FilterContext from "../Framework/Context";
 
 interface Props {
   node: any
+  disabled: boolean
 }
 
 export default class RuleTools extends React.Component<Props, object> {
   render(): ReactNode {
+    const { disabled } = this.props;
     return (
       <FilterContext.Consumer>
         {(context: any) => {
           return (
             <ButtonGroup>
-              <Button icon="copy" onClick={() => context.copyNode(this.props.node)}  />
-              <Button icon="delete" type="danger" onClick={() => context.removeNode(this.props.node)} />
+              <Button disabled={disabled} icon="copy" onClick={() => context.copyNode(this.props.node)}  />
+              <Button disabled={disabled} icon="delete" type="danger" onClick={() => context.removeNode(this.props.node)} />
               <Button
+                disabled={disabled}
                 onClick={() => {
                   context.collapseNode(this.props.node);
                 }}

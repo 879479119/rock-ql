@@ -21,9 +21,11 @@ interface Props {
     };
   };
   rules: Rules
+  disabled?: boolean
 }
 
 interface State {
+  disabled: boolean;
   errors: any;
   tree: any;
   rules: Rules;
@@ -44,6 +46,7 @@ export default class Framework extends React.Component<Props, State> {
   constructor(props: Props) {
     super(props);
     this.state = {
+      disabled: props.disabled || false,
       errors: null,
       rules: props.rules,
       tree: assignParentNode(props.filters),

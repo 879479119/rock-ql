@@ -5,6 +5,7 @@ import DatePicker from "antd/es/date-picker";
 const { RangePicker } = DatePicker;
 
 interface Props {
+  disabled: boolean;
   context: any;
   errors: any;
   node: {
@@ -26,7 +27,7 @@ export default class RangeRule extends React.Component<Props, object> {
     this.props.context.changeDateNodeValue(this.props.node.to, strings[1])
   };
   render() : ReactNode {
-    const { node, errors } = this.props;
+    const { node, errors, disabled } = this.props;
 
     if (!node) {
       return null
@@ -38,6 +39,7 @@ export default class RangeRule extends React.Component<Props, object> {
       <span className={errors && errors.has(node) ? 'has-error' : ''} >
         在&nbsp;&nbsp;
         <RangePicker
+          disabled={disabled}
           value={to.value ? [moment(from.value), moment(to.value)] : undefined}
           showTime
           style={{ width: 240}}

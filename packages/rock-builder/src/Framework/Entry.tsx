@@ -62,17 +62,20 @@ export default class Entry extends React.Component<Props, object> {
         {context => {
           if(NodeComponent !== Null) {
             return React.createElement(NodeComponent, {
+              disabled: context.disabled,
               node: this.props.node,
               errors: context.errors,
               context
             })
           }
+          console.info(context)
           // 剩下的情况就是用户自定义的组件节点了
           return React.createElement(context.rules[type].component, {
             node: this.props.node,
             errors: context.errors,
             context,
             ...context.rules[type].props,
+            disabled: context.disabled,
           })
         }}
       </FilterContext.Consumer>

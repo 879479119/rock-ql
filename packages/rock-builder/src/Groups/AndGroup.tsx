@@ -5,6 +5,7 @@ import "./index.css";
 import GuideLine from "../Tools/GuideLine";
 
 interface Props {
+  disabled: boolean
   node: {
     type: string;
     list: {
@@ -28,7 +29,7 @@ export default class AndGroup extends React.Component<Props, object> {
     return (
         <div style={{ marginLeft: 40 }} className="group">
           <Fragment>
-            <GroupTools type="FILTER_AND" node={node} />
+            <GroupTools type="FILTER_AND" node={node} disabled={this.props.disabled} />
             <div>
               <GuideLine />
               {list.map((item, index) => {

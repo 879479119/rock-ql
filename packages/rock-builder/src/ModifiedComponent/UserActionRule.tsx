@@ -16,6 +16,7 @@ export interface OptionCollapse {
 }
 
 interface Props {
+  disabled: boolean
   targetChange: (e: string) => {}
   actionChange: (id: string | number, comment: string) => {}
   errors: any;
@@ -42,7 +43,7 @@ class UserActionRule extends React.Component<Props, any> {
     };
   }
   render(): ReactNode {
-    const { errors, node } = this.props;
+    const { errors, node, disabled } = this.props;
     const { action, target } = this.props.node.detail;
     const { actionOptions } = this.state;
 
@@ -50,6 +51,7 @@ class UserActionRule extends React.Component<Props, any> {
       <span className={errors && errors.has(node) ? "has-error" : ""}>
         对用户&nbsp;&nbsp;
         <Input
+          disabled={disabled}
           value={target.value}
           placeholder="请输入"
           style={{ width: 100 }}
@@ -57,6 +59,7 @@ class UserActionRule extends React.Component<Props, any> {
         />
         &nbsp;&nbsp; 做了 &nbsp;&nbsp;
         <Select
+          disabled={disabled}
           value={action.id}
           placeholder="请 选择"
           style={{ width: 100 }}
@@ -69,7 +72,7 @@ class UserActionRule extends React.Component<Props, any> {
             Object.entries(actionOptions).map(([key, options] : [string, any]) => (
               <OptGroup label={key} key={key} >
                 {
-                  options.map((option : Option) => <Option key={option.id + ''} >{option.name}</Option>)
+                  options.map((option : Option) => <Option key={option.id + ''} value={option.id} >{option.name}</Option>)
                 }
               </OptGroup>
             ))

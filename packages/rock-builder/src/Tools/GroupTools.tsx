@@ -9,13 +9,14 @@ import Menu from "antd/es/menu";
 import Icon from "antd/es/icon";
 
 interface Props {
+  disabled: boolean;
   type: string;
   node: any;
 }
 
 export default class GroupTools extends React.Component<Props, object> {
   render(): ReactNode {
-    const { type, node } = this.props;
+    const { type, node, disabled: readOnly } = this.props;
     let disabled = false;
     if (node.parent && node.parent.type === 'WHERE') {
       disabled = true;
@@ -28,6 +29,7 @@ export default class GroupTools extends React.Component<Props, object> {
             <div className="group-tool">
               <ButtonGroup>
                 <Button
+                  disabled={readOnly}
                   onClick={() =>
                     context.changeNodeType(this.props.node, "FILTER_AND")
                   }
@@ -36,6 +38,7 @@ export default class GroupTools extends React.Component<Props, object> {
                   且
                 </Button>
                 <Button
+                  disabled={readOnly}
                   onClick={() =>
                     context.changeNodeType(this.props.node, "FILTER_OR")
                   }
@@ -47,6 +50,7 @@ export default class GroupTools extends React.Component<Props, object> {
               &nbsp;&nbsp;
               <ButtonGroup className="ActionBtnGroup">
                 <Dropdown
+                  disabled={readOnly}
                   trigger={["click"]}
                   overlay={
                     <Menu
@@ -72,13 +76,13 @@ export default class GroupTools extends React.Component<Props, object> {
                 <Button
                   icon="delete"
                   type="danger"
-                  disabled={disabled}
+                  disabled={disabled || readOnly}
                   onClick={() => context.removeNode(this.props.node)}
                 >
                   <span>删除组</span>
                 </Button>
                 <Button
-                  disabled={disabled}
+                  disabled={disabled || readOnly}
                   onClick={() => {
                     context.collapseNode(this.props.node);
                   }}
