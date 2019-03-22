@@ -21,7 +21,7 @@ const transformAction = (node) => {
   return {
     type: "FILTER_NODE",
     action: {
-      type: config.mapWithKey ? "TOPIC_ACTION" : "USER_ACTION",
+      type: config.mapWithKey[node.subjectId].name,
       detail: {
         action: {
           type: "ID_NODE",
@@ -49,8 +49,8 @@ const transformAction = (node) => {
 
 const transformNode = (node) => {
   return {
-    "subjectId": node.action.type === 'TOPIC_ACTION' ? 0 : 1,
-    "subjectName": node.action.type === 'TOPIC_ACTION' ? "话题" : '会员',
+    "subjectId": config.mapWithType[node.action.type].id,
+    "subjectName": config.mapWithType[node.action.type].name,
     "actionId": +node.action.detail.action.id,
     "actionName": node.action.detail.action.comment || '',
     "actionValue": node.target ? node.target.value : '',

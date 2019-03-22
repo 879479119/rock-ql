@@ -40,8 +40,8 @@ const sample = {
                       id: "13"
                     },
                     target: {
-                      type: "ID_NODE",
-                      id: "2",
+                      type: "TEXT_NODE",
+                      value: "2",
                       comment: "你是不是傻报表"
                     }
                   }
@@ -68,8 +68,8 @@ const sample = {
                       id: "13"
                     },
                     target: {
-                      type: "ID_NODE",
-                      id: "23"
+                      type: "TEXT_NODE",
+                      value: "23"
                     }
                   }
                 },
@@ -100,8 +100,8 @@ const sample = {
                       id: "15"
                     },
                     target: {
-                      type: "ID_NODE",
-                      id: "5"
+                      type: "TEXT_NODE",
+                      value: "5"
                     }
                   }
                 }
@@ -116,8 +116,8 @@ const sample = {
                       id: "16"
                     },
                     target: {
-                      type: "ID_NODE",
-                      id: "8"
+                      type: "TEXT_NODE",
+                      value: "8"
                     }
                   }
                 }
@@ -132,8 +132,8 @@ const sample = {
                       id: "3"
                     },
                     target: {
-                      type: "ID_NODE",
-                      id: "8"
+                      type: "TEXT_NODE",
+                      value: "8"
                     }
                   }
                 }
@@ -151,8 +151,8 @@ const sample = {
                           id: "7"
                         },
                         target: {
-                          type: "ID_NODE",
-                          id: "8"
+                          type: "TEXT_NODE",
+                          value: "8"
                         }
                       }
                     }
@@ -167,8 +167,8 @@ const sample = {
                           id: "7"
                         },
                         target: {
-                          type: "ID_NODE",
-                          id: "8"
+                          type: "TEXT_NODE",
+                          value: "8"
                         }
                       }
                     }

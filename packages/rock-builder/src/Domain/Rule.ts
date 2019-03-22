@@ -16,7 +16,7 @@ export default class Rule {
     type: "TOPIC_ACTION",
     detail: {
       action: { id: undefined, type: 'ID_NODE' },
-      target: { id: undefined, type: 'ID_NODE' }
+      target: { value: undefined, type: 'TEXT_NODE' }
     }
   };
   range = {
@@ -28,7 +28,7 @@ export default class Rule {
   clear() {
     this.action.detail = {
       action: { id: undefined, type: 'ID_NODE' },
-      target: { id: undefined, type: 'ID_NODE' }
+      target: { value: undefined, type: 'TEXT_NODE' }
     };
   }
 }
