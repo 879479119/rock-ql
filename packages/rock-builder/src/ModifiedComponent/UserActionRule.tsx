@@ -58,7 +58,7 @@ class UserActionRule extends React.Component<Props, any> {
         &nbsp;&nbsp; 做了 &nbsp;&nbsp;
         <Select
           value={action.id}
-          placeholder="请选择"
+          placeholder="请 选择"
           style={{ width: 100 }}
           onChange={(val: number | string) => {
             const item: any = this.props.actionOptionList.find((t: any) => +t.id === +val)
