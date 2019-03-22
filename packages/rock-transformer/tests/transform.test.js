@@ -4,7 +4,7 @@ const origin = {
   "predicate": "OR",
   "actions": [
     {
-      "subjectId": 0,
+      "subjectId": 2,
       "subjectName": "话题",
       "actionId": 0,
       "actionName": "收听",
@@ -13,7 +13,7 @@ const origin = {
       "to": "2019-03-07 17:27:24"
     },
     {
-      "subjectId": 0,
+      "subjectId": 2,
       "subjectName": "话题",
       "actionId": 0,
       "actionName": "收藏回答",
@@ -22,7 +22,7 @@ const origin = {
       "to": "2019-03-07 17:27:24"
     },
     {
-      "subjectId": 0,
+      "subjectId": 2,
       "subjectName": "会员",
       "actionId": 0,
       "actionName": "全部用户",
@@ -36,7 +36,7 @@ const origin = {
       "predicate": "OR",
       "actions": [
         {
-          "subjectId": 0,
+          "subjectId": 2,
           "subjectName": "话题",
           "actionId": 0,
           "actionName": "回答问题",
@@ -45,7 +45,7 @@ const origin = {
           "to": "2019-03-07 17:27:24"
         },
         {
-          "subjectId": 0,
+          "subjectId": 2,
           "subjectName": "话题",
           "actionId": 0,
           "actionName": "评论回答",
@@ -54,7 +54,7 @@ const origin = {
           "to": "2019-03-07 17:27:24"
         },
         {
-          "subjectId": 0,
+          "subjectId": 2,
           "subjectName": "会员",
           "actionId": 0,
           "actionName": "会员用户",
@@ -69,7 +69,7 @@ const origin = {
       "predicate": "AND",
       "actions": [
         {
-          "subjectId": 0,
+          "subjectId": 2,
           "subjectName": "话题",
           "actionId": 0,
           "actionName": "关注话题",
@@ -78,7 +78,7 @@ const origin = {
           "to": "2019-03-07 17:27:24"
         },
         {
-          "subjectId": 0,
+          "subjectId": 2,
           "subjectName": "话题",
           "actionId": 0,
           "actionName": "评论回答",

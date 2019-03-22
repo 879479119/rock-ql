@@ -21,7 +21,7 @@ const transformAction = (node) => {
   return {
     type: "FILTER_NODE",
     action: {
-      type: config.mapWithKey[node.subjectId].name,
+      type: config.mapWithKey[node.subjectId].type,
       detail: {
         action: {
           type: "ID_NODE",
