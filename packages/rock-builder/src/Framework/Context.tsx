@@ -15,6 +15,7 @@ const rules: Rules = {};
 
 const FilterContext = createContext({
   disabled: false,
+  readOnly: false,
   tree: null,
   errors: null,
   rules,

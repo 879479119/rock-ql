@@ -7,6 +7,7 @@ import Select from "antd/es/select";
 const { Option } = Select;
 
 interface Props {
+  readOnly: boolean
   disabled: boolean
   context: any;
   node: {
@@ -22,7 +23,7 @@ export default class ActionRule extends React.Component<Props, object> {
   };
 
   render(): ReactNode {
-    const { node, context, disabled } = this.props;
+    const { node, context, disabled, readOnly } = this.props;
     const { action, range } = node;
 
     // const options = [
@@ -38,17 +39,25 @@ export default class ActionRule extends React.Component<Props, object> {
     return (
       <div className="rule-tool">
         <SplitLine />
-        <Select disabled={disabled} value={node.action.type} style={{ width: 100 }} onChange={this.typeChange}>
-          {options.map(op => (
-            <Option key={op.key} value={op.key}>
-              {op.name}
-            </Option>
-          ))}
-        </Select>
+        {
+          readOnly ? null : (
+            <Select disabled={disabled} value={node.action.type} style={{ width: 100 }} onChange={this.typeChange}>
+              {options.map(op => (
+                <Option key={op.key} value={op.key}>
+                  {op.name}
+                </Option>
+              ))}
+            </Select>
+          )
+        }
         &nbsp; &nbsp;
         <Entry node={action} />
         {range ? <Entry node={range} /> : null}
-        <RuleTools node={this.props.node} disabled={disabled} />
+        {
+          readOnly ? null : (
+            <RuleTools node={this.props.node} disabled={disabled} />
+          )
+        }
       </div>
     );
   }

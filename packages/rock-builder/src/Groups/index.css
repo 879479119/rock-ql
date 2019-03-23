@@ -2,6 +2,11 @@
 
 .group {
   position: relative;
+  margin-left: 40px;
+}
+.group-readonly {
+  position: relative;
+  margin-left: 40px;
 }
 
 .group-error {

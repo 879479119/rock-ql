@@ -22,10 +22,12 @@ interface Props {
   };
   rules: Rules
   disabled?: boolean
+  readOnly?: boolean
 }
 
 interface State {
   disabled: boolean;
+  readOnly: boolean;
   errors: any;
   tree: any;
   rules: Rules;
@@ -47,6 +49,7 @@ export default class Framework extends React.Component<Props, State> {
     super(props);
     this.state = {
       disabled: props.disabled || false,
+      readOnly: props.readOnly || false,
       errors: null,
       rules: props.rules,
       tree: assignParentNode(props.filters),

@@ -62,6 +62,7 @@ export default class Entry extends React.Component<Props, object> {
         {context => {
           if(NodeComponent !== Null) {
             return React.createElement(NodeComponent, {
+              readOnly: context.readOnly,
               disabled: context.disabled,
               node: this.props.node,
               errors: context.errors,
@@ -75,6 +76,7 @@ export default class Entry extends React.Component<Props, object> {
             errors: context.errors,
             context,
             ...context.rules[type].props,
+            readOnly: context.readOnly,
             disabled: context.disabled,
           })
         }}

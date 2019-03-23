@@ -5,6 +5,7 @@ import "./index.css";
 import GuideLine from "../Tools/GuideLine";
 
 interface Props {
+  readOnly : boolean
   disabled: boolean
   node: {
     type: string;
@@ -20,6 +21,7 @@ export default class AndGroup extends React.Component<Props, object> {
   render(): ReactNode {
     const {
       node,
+      readOnly,
       node: { list },
     } = this.props;
     if (!list) {
@@ -27,9 +29,9 @@ export default class AndGroup extends React.Component<Props, object> {
     }
 
     return (
-        <div style={{ marginLeft: 40 }} className="group">
+        <div className={readOnly ? 'group-readonly' : 'group'}>
           <Fragment>
-            <GroupTools type="FILTER_AND" node={node} disabled={this.props.disabled} />
+            <GroupTools type="FILTER_AND" node={node} disabled={this.props.disabled} readOnly={this.props.readOnly}  />
             <div>
               <GuideLine />
               {list.map((item, index) => {

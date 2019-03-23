@@ -5,6 +5,7 @@ import './index.css'
 import GuideLine from "../Tools/GuideLine";
 
 interface Props {
+  readOnly: boolean;
   disabled: boolean;
   errors: any;
   node: {
@@ -25,9 +26,9 @@ export default class OrGroup extends React.Component<Props, object> {
     }
 
     return (
-      <div style={{ marginLeft: 40 }} className="group" >
+      <div className="group" >
         {/*<SplitLine/>*/}
-        <GroupTools type="FILTER_OR" node={node} disabled={this.props.disabled} />
+        <GroupTools type="FILTER_OR" node={node} disabled={this.props.disabled} readOnly={this.props.readOnly} />
         <div>
           <GuideLine/>
           {

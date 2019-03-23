@@ -3,6 +3,7 @@ import {OptionCollapse} from "../ModifiedComponent/TopicActionRule";
 import {ReactComponentLike} from "prop-types";
 
 interface Props {
+  readOnly: boolean;
   disabled: boolean;
   context: any;
   errors: any;
@@ -40,6 +41,7 @@ export default function (WrappedComponent: ReactComponentLike): ReactComponentLi
 
     render (): ReactNode {
       return React.createElement(WrappedComponent, {
+        readOnly: this.props.readOnly,
         disabled: this.props.disabled,
         node: this.props.node,
         errors: this.props.errors,

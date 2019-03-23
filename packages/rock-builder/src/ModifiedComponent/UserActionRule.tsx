@@ -16,6 +16,7 @@ export interface OptionCollapse {
 }
 
 interface Props {
+  readOnly: boolean
   disabled: boolean
   targetChange: (e: string) => {}
   actionChange: (id: string | number, comment: string) => {}
@@ -43,7 +44,7 @@ class UserActionRule extends React.Component<Props, any> {
     };
   }
   render(): ReactNode {
-    const { errors, node, disabled } = this.props;
+    const { errors, node, disabled, readOnly } = this.props;
     const { action, target } = this.props.node.detail;
     const { actionOptions } = this.state;
 
@@ -55,7 +56,7 @@ class UserActionRule extends React.Component<Props, any> {
           value={target.value}
           placeholder="请输入"
           style={{ width: 100 }}
-          onChange={(e) => this.props.targetChange(e.target.value)}
+          onChange={(e) => readOnly ? null : this.props.targetChange(e.target.value)}
         />
         &nbsp;&nbsp; 做了 &nbsp;&nbsp;
         <Select
@@ -64,6 +65,7 @@ class UserActionRule extends React.Component<Props, any> {
           placeholder="请 选择"
           style={{ width: 100 }}
           onChange={(val: number | string) => {
+            if (readOnly) return;
             const item: any = this.props.actionOptionList.find((t: any) => +t.id === +val)
             this.props.actionChange(val, item.name)
           }}
