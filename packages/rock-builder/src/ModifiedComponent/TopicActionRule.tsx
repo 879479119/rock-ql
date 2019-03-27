@@ -48,8 +48,6 @@ class TopicActionRule extends React.Component<Props, any> {
     const { action, target } = this.props.node.detail;
     const { actionOptions } = this.state;
 
-    console.info(this.props)
-
     return (
       <span className={errors && errors.has(node) ? "has-error" : ""}>
         对话题&nbsp;&nbsp;
@@ -57,7 +55,7 @@ class TopicActionRule extends React.Component<Props, any> {
           disabled={disabled}
           value={target.value}
           placeholder="请输入"
-          style={{ width: 100 }}
+          style={{ width: 150 }}
           onChange={(e) => readOnly ? null : this.props.targetChange(e.target.value)}
         />
         &nbsp;&nbsp; 做了 &nbsp;&nbsp;
@@ -65,7 +63,7 @@ class TopicActionRule extends React.Component<Props, any> {
           disabled={disabled}
           value={action.id}
           placeholder="请选择"
-          style={{ width: 100 }}
+          style={{ width: 120 }}
           onChange={(val: number | string) => {
             if (readOnly) return;
             const item: any = this.props.actionOptionList.find((t: any) => +t.id === +val)

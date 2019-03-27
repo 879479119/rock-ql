@@ -372,8 +372,8 @@ class App extends Component<any, any> {
         <FilterBuidler
           ref={this.filterRef}
           filters={sample.source.filters}
-          disabled
-          readOnly
+          // disabled
+          // readOnly
           rules={{
             TOPIC_ACTION: {
               label: '话题',
