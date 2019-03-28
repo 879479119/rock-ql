@@ -63,7 +63,7 @@ class TopicActionRule extends React.Component<Props, any> {
           disabled={disabled}
           value={action.id}
           placeholder="请选择"
-          style={{ width: 120 }}
+          style={{ width: 150 }}
           onChange={(val: number | string) => {
             if (readOnly) return;
             const item: any = this.props.actionOptionList.find((t: any) => +t.id === +val)
