@@ -62,9 +62,9 @@ class UserActionRule extends React.Component<Props, any> {
         <Select
           disabled={disabled}
           value={action.id}
-          placeholder="请 选择"
+          placeholder="请选择"
           style={{ width: 150 }}
-          onChange={(val: number | string) => {
+          onChange={(val: any) => {
             if (readOnly) return;
             const item: any = this.props.actionOptionList.find((t: any) => +t.id === +val)
             this.props.actionChange(val, item.name)

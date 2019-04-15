@@ -124,12 +124,12 @@ const setSubjects = (subjects) => {
 
 setSubjects([
   {
-    id: 2,
+    id: 1,
     name: '话题',
     type: 'TOPIC_ACTION',
   },
   {
-    id: 3,
+    id: 2,
     name: '用户',
     type: 'USER_ACTION',
   },
